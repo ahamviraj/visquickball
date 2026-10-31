@@ -5,6 +5,7 @@ Vi's Quick Ball is a native Android assistive navigation utility. Its floating c
 🌐 **Official Website:** https://ahamviraj.github.io/visquickball/
 
 🔒 **Privacy Policy:** https://ahamviraj.github.io/visquickball/privacy-policy.html
+
 =======
 **Current project release:** 1.0.0  
 **Package ID:** `com.viraj.viquickball`
