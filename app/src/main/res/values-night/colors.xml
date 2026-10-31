@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="quick_ball_pink">#FF9BC9</color>
+    <color name="quick_ball_pink_dark">#F47AB4</color>
+    <color name="quick_ball_background">#151316</color>
+    <color name="quick_ball_surface">#211E23</color>
+    <color name="quick_ball_text">#F4EFF3</color>
+    <color name="quick_ball_muted">#C0B8C0</color>
+    <color name="quick_ball_outline">#3A343B</color>
+    <color name="quick_ball_tint_surface">#3A2632</color>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Vi\'s Quick Ball</string>
+    <string name="accessibility_service_name">Vi\'s Quick Ball navigation</string>
+    <string name="accessibility_service_description">Observes window state metadata to hide Quick Ball over system panels. Performs Back, Home and Recent Apps only in response to your gestures. Does not retrieve window content.</string>
+    <string name="quick_ball_widget_description">Toggle Vi\'s Quick Ball from your home screen.</string>
+    <string name="quick_settings_tile_label">Quick Ball</string>
+    <string name="quick_ball_about_title">About Vi\'s Quick Ball</string>
+</resources>
