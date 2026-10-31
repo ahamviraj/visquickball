@@ -1,3 +1,8 @@
+// Copyright (C) 2026 Aham Viraj
+// SPDX-License-Identifier: GPL-3.0-only
+// This program is licensed under the GNU General Public License version 3 only.
+// See the repository LICENSE file for the complete license text.
+
 package com.viraj.viquickball
 
 import android.content.Intent
@@ -251,10 +256,18 @@ class MainActivity : AppCompatActivity() {
             .setMessage(
                 "A small navigation tool with tap, double-tap, long-press and drag gestures.\n\n" +
                     "Accessibility use: Android sends window-state events. Quick Ball checks event package and class names to detect system panels, and requests Back, Home or Recent Apps only for a gesture. The service is configured not to retrieve window content.\n\n" +
+                    "Developer: Viraj (Aham Viraj)\n\n" +
                     "This project contains no advertising SDK or ad placements. Add the home-screen widget from your launcher, or add the Quick Ball tile from the Quick Settings editor."
             )
             .setPositiveButton("Privacy Policy") { _, _ ->
                 startActivity(Intent(this, PrivacyPolicyActivity::class.java))
+            }
+            .setNeutralButton("Source code") { _, _ ->
+                val repository = Uri.parse("https://github.com/ahamviraj/visquickball")
+                runCatching { startActivity(Intent(Intent.ACTION_VIEW, repository)) }
+                    .onFailure {
+                        Toast.makeText(this, "No browser is available to open the source repository.", Toast.LENGTH_LONG).show()
+                    }
             }
             .setNegativeButton("Done", null)
             .show()

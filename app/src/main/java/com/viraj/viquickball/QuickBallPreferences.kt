@@ -1,3 +1,8 @@
+// Copyright (C) 2026 Aham Viraj
+// SPDX-License-Identifier: GPL-3.0-only
+// This program is licensed under the GNU General Public License version 3 only.
+// See the repository LICENSE file for the complete license text.
+
 package com.viraj.viquickball
 
 import android.content.ComponentName

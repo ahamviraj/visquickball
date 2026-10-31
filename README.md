@@ -5,19 +5,24 @@ Vi's Quick Ball is a native Android assistive navigation utility. Its floating c
 🌐 **Official Website:** https://ahamviraj.github.io/visquickball/
 
 🔒 **Privacy Policy:** https://ahamviraj.github.io/visquickball/privacy-policy.html
+=======
+**Current project release:** 1.0.0  
+**Package ID:** `com.viraj.viquickball`
 
 ## Developer
 
+- Developer: **Viraj**
 - Display name: **Aham Viraj**
-- Name: **Viraj**
 - Email: [ahamviraj@gmail.com](mailto:ahamviraj@gmail.com)
 - GitHub: [ahamviraj](https://github.com/ahamviraj)
+- Official website: [Vi's Quick Ball](https://ahamviraj.github.io/visquickball/)
+- Privacy policy: [Privacy Policy](https://ahamviraj.github.io/visquickball/privacy-policy.html)
 - Instagram: [@ahamveeraj](https://www.instagram.com/ahamveeraj/)
 - Project repository: [ahamviraj/visquickball](https://github.com/ahamviraj/visquickball)
 
 ## Version
 
-The requested website release label is **1.0.0**. The Android app configuration in `app/build.gradle.kts` currently has `versionName = "1.0"` and `versionCode = 1`. This discrepancy is documented here; the Android release configuration was not changed. The website does not claim that a public download is available.
+The current project release label is **1.0.0**. The Android app configuration in `app/build.gradle.kts` currently has `versionName = "1.0"` and `versionCode = 1`. This discrepancy is documented here; the Android release configuration was not changed. No public download is claimed here.
 
 ## Features
 
@@ -72,4 +77,10 @@ After you publish and verify the policy page, set the real HTTPS URL in `app/src
 - After hosting, copy the final canonical HTTPS Privacy Policy URL into the Android app configuration and the Indus Appstore dashboard.
 - Recheck the policy if dependencies, network access, or data handling change.
 
-To report a privacy concern, email [ahamviraj@gmail.com](mailto:ahamviraj@gmail.com). The policy's canonical online URL remains unconfigured until the site is deployed.
+To report a privacy concern, email [ahamviraj@gmail.com](mailto:ahamviraj@gmail.com). The published policy is available at [ahamviraj.github.io/visquickball/privacy-policy.html](https://ahamviraj.github.io/visquickball/privacy-policy.html).
+
+## License
+
+Vi's Quick Ball is distributed under the **GNU General Public License v3.0 only** (`GPL-3.0-only`). See the repository's [LICENSE](LICENSE) file for the complete license terms. This is version 3 only; it does not grant use under later GPL versions.
+
+Third-party libraries and platform components remain subject to their respective licenses. The project license does not change those terms.
