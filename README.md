@@ -2,6 +2,9 @@
 
 Vi's Quick Ball is a native Android assistive navigation utility. Its floating concentric-circle ball requests Back on tap, Home on double-tap, and Recent Apps on long-press, and can be dragged to dock at a screen edge. Android or a device manufacturer may restrict Recent Apps or background behavior.
 
+🌐 **Official Website:** https://ahamviraj.github.io/visquickball/
+🔒 **Privacy Policy:** https://ahamviraj.github.io/visquickball/privacy-policy.html
+
 ## Developer
 
 - Display name: **Aham Viraj**
