@@ -33,6 +33,23 @@ The current project release label is **1.0.0**. The Android app configuration in
 - Privacy policy available in the app offline and in `website/privacy-policy.html`.
 - No ads or advertising SDK in the inspected project.
 
+## Promotional Slides
+
+<p align="center"><a href="slides/1.jpg"><img src="slides/1.jpg" alt="Promotional slide with a phone home screen and the headline Tired of old navigation? Try Quick Ball." width="760"></a></p>
+<p align="center"><a href="slides/2.jpg"><img src="slides/2.jpg" alt="Vi's Quick Ball promotional graphic with a phone preview and product overview panels." width="760"></a></p>
+<p align="center"><a href="slides/3.jpg"><img src="slides/3.jpg" alt="Promotional collage of Android home screens with Quick Ball; large text reads Place it anywhere." width="760"></a></p>
+<p align="center"><a href="slides/4.jpg"><img src="slides/4.jpg" alt="Two angled Android home screens show Quick Ball on opposite sides, with the words Right and Left." width="760"></a></p>
+<p align="center"><a href="slides/5.jpg"><img src="slides/5.jpg" alt="Promotional illustration showing one tap for Back and a double tap for Home." width="760"></a></p>
+<p align="center"><a href="slides/6.jpg"><img src="slides/6.jpg" alt="Promotional illustration of a long press on Quick Ball and the Recent Apps overview." width="760"></a></p>
+<p align="center"><a href="slides/7.jpg"><img src="slides/7.jpg" alt="Promotional graphic showing a Quick Ball tile in Android Quick Settings and a Quick Ball home-screen widget." width="760"></a></p>
+
+## Screenshots
+
+<p align="center"><a href="screenshots/back.png"><img src="screenshots/back.png" alt="Android home screen with the concentric Quick Ball overlay docked at the right edge." width="180"></a> <a href="screenshots/dog.png"><img src="screenshots/dog.png" alt="Shopping app page with a dog photo and the Quick Ball overlay at the right edge." width="180"></a> <a href="screenshots/down.png"><img src="screenshots/down.png" alt="Android home screen with Quick Ball positioned near the bottom edge." width="180"></a> <a href="screenshots/files.png"><img src="screenshots/files.png" alt="Android file manager showing internal storage folders with the Quick Ball overlay on the right." width="180"></a></p>
+<p align="center"><a href="screenshots/gallery.png"><img src="screenshots/gallery.png" alt="Android photo gallery grid with the Quick Ball overlay at the right edge." width="180"></a> <a href="screenshots/left.png"><img src="screenshots/left.png" alt="Android home screen with Quick Ball docked along the left edge." width="180"></a> <a href="screenshots/main.png"><img src="screenshots/main.png" alt="Android home screen with its wallpaper and the Quick Ball floating above the lower app icons." width="180"></a> <a href="screenshots/recent.png"><img src="screenshots/recent.png" alt="Android Recent Apps overview with Quick Ball visible at the right edge." width="180"></a></p>
+<p align="center"><a href="screenshots/right.png"><img src="screenshots/right.png" alt="Android home screen with Quick Ball docked along the right edge." width="180"></a> <a href="screenshots/shortcut_in_Quick_Tiles_main.png"><img src="screenshots/shortcut_in_Quick_Tiles_main.png" alt="Expanded Android Quick Settings panel with the Quick Ball tile switched on." width="180"></a> <a href="screenshots/shortcut_in_Quick_Tiles.png"><img src="screenshots/shortcut_in_Quick_Tiles.png" alt="Android Quick Settings tile editor showing Quick Ball among the available tiles." width="180"></a> <a href="screenshots/up.png"><img src="screenshots/up.png" alt="Android home screen with Quick Ball positioned near the top edge." width="180"></a></p>
+<p align="center"><a href="screenshots/widget_on_home.png"><img src="screenshots/widget_on_home.png" alt="Android home screen displaying the Vi's Quick Ball widget with its ON state and setup and turn-off actions." width="180"></a> <a href="screenshots/widget.png"><img src="screenshots/widget.png" alt="Android widget picker preview for Vi's Quick Ball, with an Add widget button." width="180"></a></p>
+
 ## Permissions
 
 - **Display over other apps:** shows the floating ball above ordinary apps.

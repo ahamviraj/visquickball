@@ -304,6 +304,109 @@ a:focus-visible,button:focus-visible {
 .section {
   padding-block:84px
 }
+.gallery-section {
+  padding-block:82px
+}
+.screenshots-section {
+  margin-top:88px
+}
+.slide-gallery {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px
+}
+.screenshot-gallery {
+  display:grid;
+  grid-auto-columns:minmax(190px,240px);
+  grid-auto-flow:column;
+  gap:14px;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  padding:4px 2px 18px;
+  scroll-snap-type:inline mandatory;
+  scrollbar-color:#d8cbd2 #f8f2f5
+}
+.gallery-card {
+  min-width:0;
+  margin:0;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(49,31,43,.05);
+  transition:transform .2s ease,box-shadow .2s ease
+}
+.gallery-card:hover {
+  transform:translateY(-3px);
+  box-shadow:var(--shadow)
+}
+.gallery-open {
+  display:block;
+  overflow:hidden;
+  background:var(--soft)
+}
+.gallery-open img {
+  display:block;
+  width:100%;
+  height:auto;
+  transition:transform .25s ease
+}
+.slide-gallery .gallery-open img {
+  aspect-ratio:16/9;
+  object-fit:contain
+}
+.gallery-open:hover img {
+  transform:scale(1.015)
+}
+.gallery-card figcaption {
+  padding:11px 14px 13px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5
+}
+.lightbox {
+  width:min(94vw,1200px);
+  max-width:none;
+  max-height:94vh;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:18px;
+  background:#242126;
+  color:#fff
+}
+.lightbox::backdrop {
+  background:rgba(20,17,21,.84)
+}
+.lightbox-close {
+  display:block;
+  min-width:48px;
+  min-height:44px;
+  margin:0 0 8px auto;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:12px;
+  background:transparent;
+  color:#fff;
+  font:600 14px Arial,'Segoe UI',sans-serif;
+  cursor:pointer
+}
+.lightbox figure {
+  margin:0;
+  text-align:center
+}
+.lightbox img {
+  display:block;
+  max-width:100%;
+  max-height:calc(94vh - 100px);
+  width:auto;
+  height:auto;
+  margin-inline:auto;
+  object-fit:contain
+}
+.lightbox figcaption {
+  padding:9px 4px 2px;
+  color:#e5dfe3;
+  font-size:13px
+}
 .section-heading {
   text-align:center;
   max-width:650px;
@@ -534,6 +637,9 @@ a:focus-visible,button:focus-visible {
   .how-layout {
     gap:35px
   }
+  .slide-gallery {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
   .feature-grid {
     grid-template-columns:repeat(2,1fr)
   }
@@ -599,6 +705,19 @@ a:focus-visible,button:focus-visible {
   }
   .section {
     padding-block:62px
+  }
+  .gallery-section {
+    padding-block:62px
+  }
+  .screenshots-section {
+    margin-top:64px
+  }
+  .slide-gallery {
+    grid-template-columns:1fr;
+    gap:13px
+  }
+  .screenshot-gallery {
+    grid-auto-columns:minmax(72vw,240px)
   }
   .section-heading {
     text-align:left;
