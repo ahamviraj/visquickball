@@ -1,306 +1,147 @@
 (() => {
   "use strict";
+  const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  const reduceMotion = () =>
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* Download link comes from site-config.js (window.VI_QUICK_BALL_SITE.downloadUrl) */
+  const cfg = window.VI_QUICK_BALL_SITE || {};
+  const safeHttps = v => { try { const u = new URL(v); return u.protocol === "https:" ? u.href : ""; } catch (_) { return ""; } };
+  const dl = safeHttps(cfg.downloadUrl);
+  if (dl) {
+    $$("[data-download-link]").forEach(a => { a.href = dl; a.hidden = false; a.rel = "noopener noreferrer"; });
+    $$("[data-download-note]").forEach(n => { n.hidden = true; });
+  }
+  $$("[data-year]").forEach(n => { n.textContent = String(new Date().getFullYear()); });
 
-  /* ---------------------------------------------------------------
-     Config: download URL (unchanged behavior)
-     --------------------------------------------------------------- */
-  const config = window.VI_QUICK_BALL_SITE || {};
-  const safeHttps = value => {
-    try {
-      const url = new URL(value);
-      return url.protocol === "https:" ? url.href : "";
-    } catch (_) {
-      return "";
-    }
-  };
-  const download = safeHttps(config.downloadUrl);
-  if (download) {
-    document.querySelectorAll("[data-download-link]").forEach(link => {
-      link.href = download;
-      link.hidden = false;
-      link.setAttribute("rel", "noopener noreferrer");
-    });
-    document.querySelectorAll("[data-download-note]").forEach(note => {
-      note.hidden = true;
-    });
+  /* Mobile menu */
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("site-nav");
+  if (toggle && nav) {
+    const set = open => { nav.classList.toggle("is-open", open); toggle.setAttribute("aria-expanded", String(open)); };
+    toggle.addEventListener("click", () => set(!nav.classList.contains("is-open")));
+    nav.addEventListener("click", e => { if (e.target.closest("a")) set(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
   }
 
-  /* ---------------------------------------------------------------
-     Footer year
-     --------------------------------------------------------------- */
-  document.querySelectorAll("[data-year]").forEach(node => {
-    node.textContent = String(new Date().getFullYear());
+  /* Hero: feature tabs <-> phone screenshots */
+  const sel = document.querySelector("[data-feature-selector]");
+  if (sel) {
+    const tabs = $$(".feature-tab", sel), shots = $$(".phone-shot");
+    const cap = document.getElementById("hero-caption");
+    const activate = i => {
+      tabs.forEach((t, n) => {
+        const on = n === i;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      shots.forEach((s, n) => s.classList.toggle("is-active", n === i));
+      if (cap) cap.textContent = tabs[i].querySelector(".tab-desc").textContent;
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => activate(i));
+      t.addEventListener("keydown", e => {
+        const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        let n = k ? (i + k + tabs.length) % tabs.length : e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : -1;
+        if (n < 0) return;
+        e.preventDefault(); activate(n); tabs[n].focus();
+      });
+    });
+    activate(0);
+
+    /* Autoplay: advance every 1.5s. Pauses on hover/focus and while the tab is hidden;
+       disabled entirely when the visitor prefers reduced motion. */
+    const INTERVAL = 1500;
+    if (!reduce()) {
+      const hero = document.querySelector(".hero");
+      let timer = null;
+      const current = () => tabs.findIndex(t => t.classList.contains("is-active"));
+      const stop = () => { clearInterval(timer); timer = null; };
+      const start = () => {
+        if (timer || document.hidden) return;
+        timer = setInterval(() => activate((current() + 1) % tabs.length), INTERVAL);
+      };
+      hero.addEventListener("mouseenter", stop);
+      hero.addEventListener("mouseleave", start);
+      hero.addEventListener("focusin", stop);
+      hero.addEventListener("focusout", start);
+      // Restart the 1.5s countdown after a manual pick so it doesn't skip immediately
+      sel.addEventListener("click", () => { stop(); if (!hero.matches(":hover")) start(); });
+      document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+      start();
+    }
+  }
+
+  /* Scrollers: prev/next buttons that follow scroll position */
+  $$("[data-scroller]").forEach(sc => {
+    const track = sc.querySelector(".scroller-track");
+    const prev = sc.querySelector("[data-prev]"), next = sc.querySelector("[data-next]");
+    const sync = () => {
+      prev.disabled = track.scrollLeft < 4;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    };
+    const go = d => track.scrollBy({ left: d * track.clientWidth * .8, behavior: reduce() ? "auto" : "smooth" });
+    prev.addEventListener("click", () => go(-1));
+    next.addEventListener("click", () => go(1));
+    track.addEventListener("scroll", sync, { passive: true });
+    track.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+    });
+    addEventListener("resize", sync);
+    sync();
+
   });
 
-  /* ---------------------------------------------------------------
-     Hero feature selector <-> phone screenshots
-     --------------------------------------------------------------- */
-  const heroSelector = document.querySelector("[data-feature-selector]");
-  const heroScreens = document.querySelector("[data-hero-screens]");
-  const heroCaption = document.querySelector("#hero-caption");
-
-  if (heroSelector && heroScreens) {
-    const tabs = Array.from(heroSelector.querySelectorAll(".feature-tab"));
-    const shots = Array.from(heroScreens.querySelectorAll(".phone-shot"));
-
-    const activate = index => {
-      if (index < 0 || index >= tabs.length) return;
-      tabs.forEach((tab, i) => {
-        const on = i === index;
-        tab.classList.toggle("is-active", on);
-        tab.setAttribute("aria-selected", String(on));
-        tab.tabIndex = on ? 0 : -1;
-      });
-      shots.forEach((shot, i) => {
-        shot.classList.toggle("is-active", i === index);
-      });
-      if (heroCaption) {
-        const desc = tabs[index].querySelector(".tab-desc");
-        if (desc) heroCaption.textContent = desc.textContent;
-      }
-    };
-
-    tabs.forEach((tab, i) => {
-      tab.addEventListener("click", () => activate(i));
-      tab.addEventListener("keydown", event => {
-        const keys = ["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"];
-        if (!keys.includes(event.key)) return;
-        event.preventDefault();
-        let next = i;
-        if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (i + 1) % tabs.length;
-        else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
-        else if (event.key === "Home") next = 0;
-        else if (event.key === "End") next = tabs.length - 1;
-        activate(next);
-        tabs[next].focus();
-      });
+  /* Marquees (screenshots + promo slides): duplicate the set once so the CSS animation
+     loops seamlessly. Pure CSS motion, no timer. With reduced motion the row stays a
+     normal scroller with arrows. */
+  $$("[data-marquee]").forEach(box => {
+    const track = box.querySelector(".scroller-track");
+    if (!track) return;
+    if (reduce()) { box.querySelector(".scroller-btns").style.display = "flex"; return; }
+    const inner = document.createElement("div");
+    inner.className = "marquee-inner";
+    while (track.firstChild) inner.appendChild(track.firstChild);
+    $$(".shot, .slide", inner).forEach(f => {
+      const c = f.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      $$("a", c).forEach(a => { a.tabIndex = -1; });
+      inner.appendChild(c);
     });
+    track.appendChild(inner);
+    ["tabindex", "role", "aria-label"].forEach(n => track.removeAttribute(n));
+    // constant speed (~50px per second) regardless of screen size
+    const setSpeed = () => inner.style.setProperty("--marquee-duration", (inner.scrollWidth / 2 / 50) + "s");
+    setSpeed();
+    addEventListener("load", setSpeed);
+    addEventListener("resize", setSpeed);
+  });
 
-    activate(0);
+  /* Lightbox */
+  const lb = document.querySelector(".lightbox");
+  if (lb && typeof lb.showModal === "function") {
+    const img = lb.querySelector("img"), cap = lb.querySelector("figcaption"), close = lb.querySelector(".lightbox-close");
+    let last = null;
+    $$("[data-lightbox]").forEach(a => a.addEventListener("click", e => {
+      e.preventDefault();
+      last = document.activeElement;
+      const t = a.querySelector("img");
+      img.src = a.href; img.alt = t ? t.alt : "";
+      cap.textContent = a.closest("figure")?.querySelector("figcaption")?.textContent || "";
+      lb.showModal(); close.focus();
+    }));
+    const shut = () => lb.close();
+    close.addEventListener("click", shut);
+    lb.addEventListener("click", e => { if (e.target === lb) shut(); });
+    lb.addEventListener("close", () => { if (last) last.focus(); });
   }
 
-  /* ---------------------------------------------------------------
-     Gallery carousel + lightbox
-     --------------------------------------------------------------- */
-  const gallery = document.querySelector("[data-showcase-gallery]");
-  if (gallery) {
-    const thumbs = Array.from(gallery.querySelectorAll("[data-gallery-index]"));
-    const image = gallery.querySelector("[data-gallery-image]");
-    const featureLink = gallery.querySelector("[data-showcase-lightbox]");
-    const caption = gallery.querySelector("[data-gallery-caption]");
-    const currentEl = gallery.querySelector("[data-gallery-current]");
-    const totalEl = gallery.querySelector("[data-gallery-total]");
-    const prevBtn = gallery.querySelector("[data-gallery-prev]");
-    const nextBtn = gallery.querySelector("[data-gallery-next]");
-
-    const items = thumbs.map(button => {
-      const img = button.querySelector("img");
-      const label = button.getAttribute("aria-label") || "";
-      return {
-        button,
-        src: img ? img.getAttribute("src") : "",
-        alt: label,
-        caption: label
-      };
-    });
-
-    if (totalEl) totalEl.textContent = String(items.length).padStart(2, "0");
-
-    let active = 0;
-    let timer;
-
-    const show = (index, focusThumb = false) => {
-      if (!items.length) return;
-      active = (index + items.length) % items.length;
-      const item = items[active];
-
-      image.classList.add("is-changing");
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        image.src = item.src;
-        image.alt = item.alt;
-        if (featureLink) {
-          featureLink.href = item.src;
-          featureLink.setAttribute("aria-label", `Open ${item.caption} at full size`);
-        }
-        if (caption) caption.textContent = item.caption;
-        if (currentEl) currentEl.textContent = String(active + 1).padStart(2, "0");
-
-        items.forEach((entry, i) => {
-          const on = i === active;
-          entry.button.classList.toggle("is-active", on);
-          entry.button.setAttribute("aria-pressed", String(on));
-        });
-
-        item.button.scrollIntoView({
-          behavior: reduceMotion() ? "auto" : "smooth",
-          block: "nearest",
-          inline: "nearest"
-        });
-
-        requestAnimationFrame(() => image.classList.remove("is-changing"));
-        if (focusThumb) item.button.focus();
-      }, 140);
-    };
-
-    items.forEach((item, i) => {
-      item.button.addEventListener("click", () => show(i));
-    });
-    if (prevBtn) prevBtn.addEventListener("click", () => show(active - 1));
-    if (nextBtn) nextBtn.addEventListener("click", () => show(active + 1));
-
-    gallery.addEventListener("keydown", event => {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        show(active - 1);
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        show(active + 1);
-      }
-    });
-
-    show(0);
-  }
-
-  /* ---------------------------------------------------------------
-     Promo slides: dots + scroll-sync
-     --------------------------------------------------------------- */
-  const presentation = document.querySelector("[data-presentation]");
-  if (presentation) {
-    const viewport = presentation.querySelector(".slide-viewport");
-    const slides = Array.from(presentation.querySelectorAll("[data-slide]"));
-    const dots = Array.from(presentation.querySelectorAll("[data-slide-to]"));
-
-    const setActive = index => {
-      if (index < 0 || index >= slides.length) return;
-      slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("is-active", i === index);
-        if (i === index) dot.setAttribute("aria-current", "true");
-        else dot.removeAttribute("aria-current");
-      });
-    };
-
-    dots.forEach(dot => {
-      dot.addEventListener("click", () => {
-        const target = slides[Number(dot.dataset.slideTo)];
-        if (!target) return;
-        target.scrollIntoView({
-          behavior: reduceMotion() ? "auto" : "smooth",
-          block: "nearest",
-          inline: "center"
-        });
-      });
-    });
-
-    if (viewport) {
-      const observer = new IntersectionObserver(
-        entries => {
-          const visible = entries
-            .filter(e => e.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          if (visible.length) {
-            const index = slides.indexOf(visible[0].target);
-            if (index >= 0) setActive(index);
-          }
-        },
-        { root: viewport, threshold: [0.5, 0.7, 0.9] }
-      );
-      slides.forEach(slide => observer.observe(slide));
-
-      viewport.addEventListener("keydown", event => {
-        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-        event.preventDefault();
-        const current = slides.findIndex(s => s.classList.contains("is-active"));
-        const next = event.key === "ArrowRight"
-          ? Math.min(current + 1, slides.length - 1)
-          : Math.max(current - 1, 0);
-        const target = slides[next];
-        if (target) {
-          target.scrollIntoView({
-            behavior: reduceMotion() ? "auto" : "smooth",
-            block: "nearest",
-            inline: "center"
-          });
-        }
-      });
-    }
-
-    setActive(0);
-  }
-
-  /* ---------------------------------------------------------------
-     Lightbox (shared by gallery + promo slides)
-     --------------------------------------------------------------- */
-  const lightbox = document.querySelector(".lightbox");
-  if (lightbox && typeof lightbox.showModal === "function") {
-    const image = lightbox.querySelector("img");
-    const caption = lightbox.querySelector("figcaption");
-    const closeBtn = lightbox.querySelector(".lightbox-close");
-    let lastFocus = null;
-
-    const open = (href, alt, text) => {
-      lastFocus = document.activeElement;
-      image.src = href;
-      image.alt = alt || "";
-      caption.textContent = text || alt || "";
-      lightbox.showModal();
-      if (closeBtn) closeBtn.focus();
-    };
-
-    document.querySelectorAll("[data-lightbox]").forEach(link => {
-      link.addEventListener("click", event => {
-        event.preventDefault();
-        const thumb = link.querySelector("img");
-        const cap = link.closest("article")?.querySelector(".promo-caption")?.textContent || "";
-        open(link.href, thumb ? thumb.alt : "", cap);
-      });
-    });
-
-    document.querySelectorAll("[data-showcase-lightbox]").forEach(link => {
-      link.addEventListener("click", event => {
-        event.preventDefault();
-        const img = link.querySelector("img");
-        const galleryCaption = document.querySelector("[data-gallery-caption]")?.textContent || "";
-        open(link.href, img ? img.alt : "", galleryCaption);
-      });
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => {
-        lightbox.close();
-        if (lastFocus) lastFocus.focus();
-      });
-    }
-    lightbox.addEventListener("click", event => {
-      if (event.target === lightbox) {
-        lightbox.close();
-        if (lastFocus) lastFocus.focus();
-      }
-    });
-  }
-
-  /* ---------------------------------------------------------------
-     Reveal-on-scroll (progressive enhancement, no-op w/ reduced motion)
-     --------------------------------------------------------------- */
-  if (!reduceMotion() && "IntersectionObserver" in window) {
-    const targets = document.querySelectorAll(".section-head, .feature-card, .steps li, .permission-card, .download-card");
-    targets.forEach(el => el.setAttribute("data-reveal", ""));
-
-    const io = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-    );
-    targets.forEach(el => io.observe(el));
+  /* Reveal on scroll */
+  if (!reduce() && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add("is-visible"); io.unobserve(en.target); }
+    }), { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+    $$(".section-head,.feature-row,.steps li,.perm,.download-card").forEach(el => { el.setAttribute("data-reveal", ""); io.observe(el); });
   }
 })();
