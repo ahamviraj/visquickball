@@ -143,6 +143,7 @@ figcaption{color:var(--muted);font-size:.88rem;margin-top:10px}
 .contact-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px}
 .contact-links a{color:var(--muted);text-decoration:none}
 .contact-links a:hover{color:var(--text)}
+ion-icon{margin-bottom: -3px;}
 .site-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.9rem}
 .footer-inner,.footer-row{width:min(100% - 40px,var(--wrap));margin-inline:auto;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
 .footer-links{display:flex;flex-wrap:wrap;gap:8px 20px}
