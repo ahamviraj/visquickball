@@ -5,6 +5,7 @@
 
 package com.viraj.viquickball
 
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -22,12 +23,20 @@ class QuickBallTileService : TileService() {
         if (!QuickBallController.setEnabled(this, enable)) {
             QuickBallController.explainSetupRequired(this)
             val setup = Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            if (Build.VERSION.SDK_INT >= 34) {
-                val pending = PendingIntent.getActivity(this, 13, setup, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-                startActivityAndCollapse(pending)
-            } else startActivityAndCollapse(setup)
+            openSetupFromTile(setup)
         }
         updateTileState()
+    }
+
+    @SuppressLint("StartActivityAndCollapseDeprecated")
+    private fun openSetupFromTile(setup: Intent) {
+        if (Build.VERSION.SDK_INT >= 34) {
+            val pending = PendingIntent.getActivity(this, 13, setup, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            startActivityAndCollapse(pending)
+        } else {
+            // Android 8.1–13 only provide the Intent overload; Android 14+ must use PendingIntent.
+            startActivityAndCollapse(setup)
+        }
     }
 
     private fun updateTileState() {

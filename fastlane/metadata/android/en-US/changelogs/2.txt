@@ -1,0 +1,1 @@
+Improved compatibility across Android versions, including Quick Settings tile setup and display cutout handling.

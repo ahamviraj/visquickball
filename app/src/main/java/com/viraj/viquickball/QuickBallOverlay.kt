@@ -16,6 +16,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import kotlin.math.roundToInt
 import kotlin.math.max
 import kotlin.math.min
@@ -188,15 +189,18 @@ internal class QuickBallOverlay(
         val landscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
         val navBottom = if (landscape) 0 else bar("navigation_bar_height")
         val navRight = if (landscape) bar("navigation_bar_width") else 0
-        val cutout = if (Build.VERSION.SDK_INT >= 29) wm.defaultDisplay.cutout else null
-        val cutoutLeft = cutout?.safeInsetLeft ?: 0
-        val cutoutTop = cutout?.safeInsetTop ?: 0
-        val cutoutRight = cutout?.safeInsetRight ?: 0
-        val cutoutBottom = cutout?.safeInsetBottom ?: 0
+        val cutoutInsets = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) cutoutSafeInsets() else IntArray(4)
         return DockBounds(
-            max(0, cutoutLeft), max(status, cutoutTop),
-            min(real.widthPixels - navRight, real.widthPixels - cutoutRight),
-            min(real.heightPixels - navBottom, real.heightPixels - cutoutBottom)
+            max(0, cutoutInsets[0]), max(status, cutoutInsets[1]),
+            min(real.widthPixels - navRight, real.widthPixels - cutoutInsets[2]),
+            min(real.heightPixels - navBottom, real.heightPixels - cutoutInsets[3])
         )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    @Suppress("DEPRECATION")
+    private fun cutoutSafeInsets(): IntArray {
+        val cutout = wm.defaultDisplay.cutout ?: return IntArray(4)
+        return intArrayOf(cutout.safeInsetLeft, cutout.safeInsetTop, cutout.safeInsetRight, cutout.safeInsetBottom)
     }
 }

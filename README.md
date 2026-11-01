@@ -27,7 +27,8 @@ Vi's Quick Ball is a native Android assistive navigation utility. Its floating c
 
 🔒 **Privacy Policy:** https://ahamviraj.github.io/visquickball/privacy-policy.html
 
-**Current project release:** 1.0.0  
+**Prepared next release:** 1.0.1 (version code 2; not published)
+
 **Package ID:** `com.viraj.viquickball`
 
 ## Developer
@@ -43,7 +44,7 @@ Vi's Quick Ball is a native Android assistive navigation utility. Its floating c
 
 ## Version
 
-The current project release label is **1.0.0**. The Android app configuration in `app/build.gradle.kts` currently has `versionName = "1.0"` and `versionCode = 1`. This discrepancy is documented here; the Android release configuration was not changed. No public download is claimed here.
+The repository contains a local `v1.0.0` tag, while the source at that tag and a local signed APK report `versionName = "1.0"` and `versionCode = 1`. The next prepared release is **1.0.1** with **version code 2** so it can advance installed code-1 packages. I could not verify whether the tag or APK was publicly distributed; no new release or tag has been created, and no public download is claimed.
 
 ## Features
 
@@ -80,13 +81,29 @@ Both permissions are enabled manually in Android Settings. The Android app curre
 
 ## Build the Android app
 
-Open this project in Android Studio or run the existing Windows Gradle wrapper from the repository root:
+**Build requirements:** JDK 17 or newer must be installed and available to Gradle. On Windows, configure `JAVA_HOME` or select the Gradle JDK in Android Studio under **Settings → Build, Execution, Deployment → Build Tools → Gradle**. This project uses the supplied Gradle wrapper: use `gradlew.bat` on Windows or `./gradlew` on Linux, from the repository root.
+
+For example, build the debug APK with:
 
 ```powershell
 .\gradlew.bat assembleDebug
 ```
 
-The debug APK is normally at `app/build/outputs/apk/debug/app-debug.apk`. Release builds use the existing external `keystore.properties` and signing key configuration. Do not add signing credentials or keystores to source control.
+The debug APK is normally at `app/build/outputs/apk/debug/app-debug.apk`. A release build does not read signing credentials and is unsigned by default:
+
+```powershell
+.\gradlew.bat test assembleRelease
+```
+
+To explicitly sign a release with the existing developer key, request it with Gradle's long-form project property (works in PowerShell):
+
+```powershell
+.\gradlew.bat assembleRelease --project-prop=viquickball.developerSigning=true
+```
+
+That opt-in requires the ignored root `keystore.properties` and its configured keystore. Keep both out of source control. A normal F-Droid source build must omit this property; it should produce an unsigned APK for F-Droid's signing/verification process.
+
+The release changelog draft is at `fastlane/metadata/android/en-US/changelogs/2.txt`. The app has not been submitted to or listed by F-Droid.
 
 ## Preview the website
 
@@ -103,6 +120,10 @@ Then open `http://localhost:8000`. Website details and hosting instructions are 
 The website is static HTML/CSS/JavaScript and needs no backend. GitHub Pages is prepared through `.github/workflows/pages.yml`; configure **Settings → Pages → Source → GitHub Actions** after publishing the repository. Vercel can serve the site with `website/` as its project root, no build command, and `.` as output directory. See [website/README.md](website/README.md) for steps.
 
 The website is prepared for Vercel at `website/` as its project root. No website has been deployed, and no public app download or store listing is configured yet.
+
+## F-Droid preparation
+
+The F-Droid metadata is a **draft** in [`fdroid-metadata-draft/`](fdroid-metadata-draft/README.md); it is not a submission. Before submitting, publish the reviewed source commit with a matching immutable version tag, confirm the release version/code and update history, and have F-Droid maintainers validate the recipe. The Gradle default build does not require or use the private signing key. To preserve updates from developer-signed installs, F-Droid must verify a source build and publish with the upstream signing identity; that has not yet been established. An APK signed only with F-Droid's independent key is not a seamless update for developer-signed installations. See the draft notes for requirements and current signature-tool limitations.
 
 ## Configure the canonical policy URL
 
