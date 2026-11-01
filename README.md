@@ -1,4 +1,25 @@
 # Vi's Quick Ball - An Assistive Floating Touch Ball
+<table>
+  <tr>
+    <td rowspan="3" width="100" align="center" valign="middle">
+      <img src="https://raw.githubusercontent.com/ahamviraj/visquickball/refs/heads/main/website/assets/app-icon.webp" width="80" alt="Vi's Quick Ball Logo">
+    </td>
+    <td>
+      <h1>Vi's Quick Ball</h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>An Assistive Floating Touch Ball</strong>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <sub>Compatibility: Android 8.1+ (API 27+)</sub>
+    </td>
+  </tr>
+</table>
+<img src="https://raw.githubusercontent.com/ahamviraj/visquickball/refs/heads/main/slides/1.jpg" alt="Vi's Quick Ball - Back Gesture" width="100%" style="height: auto; border-radius: 12px;">
 
 Vi's Quick Ball is a native Android assistive navigation utility. Its floating concentric-circle ball requests Back on tap, Home on double-tap, and Recent Apps on long-press, and can be dragged to dock at a screen edge. Android or a device manufacturer may restrict Recent Apps or background behavior.
 
