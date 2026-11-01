@@ -3,34 +3,93 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0c">
   <meta name="description" content="Privacy information for Vi's Quick Ball Android application.">
   <title>Privacy Policy — Vi's Quick Ball</title>
   <link rel="icon" href="assets/app-icon.webp" type="image/webp">
   <link rel="stylesheet" href="styles.css">
-  <style>.policy{max-width:820px;padding-block:55px 90px}.policy h1{font:800 clamp(38px,6vw,54px)/1.1 Manrope,sans-serif;letter-spacing:-.045em;margin:10px 0}.policy .updated{color:#716b72;font-size:13px}.policy h2{font:700 22px Manrope,sans-serif;letter-spacing:-.02em;margin:34px 0 8px}.policy p,.policy li{color:#514b52;line-height:1.8}.policy ul{padding-left:22px}.policy a{color:#b94372}.policy-callout{border:1px solid #eee8ec;background:#fcf9fb;padding:17px 20px;border-radius:15px;margin-top:20px}</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to policy</a>
-  <header class="site-header"><a class="brand" href="index.html"><img src="assets/app-icon.webp" alt=""><span>Vi's Quick Ball</span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="index.html#features">Features</a><a href="privacy-policy.html" aria-current="page">Privacy</a></nav></header>
-  <main id="main" class="policy wrap">
-    <p class="eyebrow">PRIVACY &amp; DATA</p><h1>Privacy Policy</h1><p class="updated">Effective date: 31 October 2026</p>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="Vi's Quick Ball home">
+        <img src="assets/app-icon.webp" alt="" width="32" height="32">
+        <span>Vi's Quick Ball</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="privacy-policy.html" aria-current="page">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="policy">
+    <p class="eyebrow">Privacy &amp; data</p>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Effective date: 31 October 2026</p>
+
     <p>This policy describes Vi's Quick Ball - An Assistive Floating Touch Ball (package <code>com.viraj.viquickball</code>). The app is a navigation utility that displays a floating ball and requests Android navigation actions when you use its gestures.</p>
-    <h2>1. Information the app handles</h2><p>Based on the project implementation reviewed for this policy, the app does not ask you to provide an account, name, contact details, or other profile information. It has no Internet permission, app-initiated network requests, analytics integration, advertising integration, crash-reporting SDK, or remote API integration. The inspected app code does not transmit personal or accessibility data to a developer-controlled server or a third party.</p><p>The Accessibility Service receives Android window-state events. The app reads event package and class names locally to identify likely system notification or control panels and adjust overlay visibility. It does not retrieve accessibility nodes, window content, or on-screen text. Gesture actions are passed to Android through its global-action API. General operational failures may be written to Android's local log; the app does not log screen text or accessibility content.</p>
-    <h2>2. Accessibility Service</h2><p>You enable or disable this service yourself in Android Accessibility settings. It is used to request Back, Home, and Recent Apps actions when you tap, double-tap, or long-press the ball. It also observes window-state metadata (package and class names) to detect certain system panels. Its configuration sets window-content retrieval off, and the implementation does not inspect on-screen text or accessibility nodes. Android or a device manufacturer may reject or vary a global action, especially Recent Apps.</p>
-    <h2>3. Display over other apps</h2><p>The Android “Display over other apps” permission allows the Quick Ball overlay to appear above ordinary apps. The app does not use this permission to read other apps' content. You can revoke it in Android Settings.</p>
-    <h2>4. Information stored on your device</h2><p>The app stores a small set of preferences in app-private SharedPreferences: whether Quick Ball is enabled, its selected screen edge and normalized position, and onboarding progress. These values support restoring the ball and the setup experience. They are stored on the device rather than sent by the app to a server.</p><p>The Android manifest allows app backup and the project has no rules excluding these preferences. Depending on your Android backup and device-transfer settings, Android may include app data in a system-managed backup or transfer. That is handled by Android and your configured backup provider, not by an app-operated server. You can clear the app's storage in Android Settings or uninstall the app to remove its local data; a system backup may restore backed-up data later.</p>
-    <h2>5. Internet access and third parties</h2><p>The installed Android app does not declare the Internet permission, and the reviewed source contains no network client or remote service integration. Its AndroidX and Material dependencies provide interface and platform support; the inspected dependency declarations do not include advertising, analytics, or crash-reporting SDKs. Google Play Services or other system components may independently process information under their own policies if present on your device; this app does not integrate them to send its data.</p>
-    <h2>6. Advertisements</h2><p>The reviewed project contains no ad placements or advertising SDK, and the app does not display advertisements.</p>
-    <h2>7. Sharing</h2><p>The app does not sell or share app-collected personal information with the developer or third parties because the reviewed implementation does not transmit such information. Android system backup or device-transfer behavior is described above.</p>
-    <h2>8. Retention and deletion</h2><p>Preferences remain in app-private storage while the app is installed, unless cleared or removed by Android. Clear the app's storage or uninstall it to remove those local preferences. Android may retain a backup according to the system settings you use; the developer does not operate a remote data store for this app and cannot delete an Android-managed backup on your behalf.</p>
-    <h2>9. Children's privacy</h2><p>Vi's Quick Ball is a general-purpose Android utility and is not designed to collect personal information from children. The app does not provide an account or data submission feature. A parent or guardian can manage the app and its permissions through Android settings.</p>
-    <h2>10. Security</h2><p>Preferences are kept in the app's private storage and the app does not send them over a network. No method of storage or device backup can be guaranteed completely secure. Keep your device and its backup settings protected.</p>
-    <h2>11. Changes to this policy</h2><p>This policy may be updated when the app or its data handling changes. The current version will be available at the public Privacy Policy page once its hosting URL is configured. The effective date above identifies this version.</p>
-    <h2>12. Contact</h2><p>Developer display name: Aham Viraj. Name: Viraj.</p><p>Email: <a href="mailto:ahamviraj@gmail.com">ahamviraj@gmail.com</a>. GitHub: <a href="https://github.com/ahamviraj" target="_blank" rel="noopener noreferrer">github.com/ahamviraj</a>. Instagram: <a href="https://www.instagram.com/ahamveeraj/" target="_blank" rel="noopener noreferrer">@ahamveeraj</a>. Project repository: <a href="https://github.com/ahamviraj/visquickball" target="_blank" rel="noopener noreferrer">github.com/ahamviraj/visquickball</a>.</p>
-    <div class="policy-callout"><strong>Publication detail to complete:</strong> the final hosted Privacy Policy URL is not yet configured in the Android app. No app-store listing or public download destination is currently configured.</div>
-    <h2>13. Scope and confirmation</h2><p>This policy reflects the source code, Android manifest, and declared app dependencies inspected on the effective date. Android's system backup provider behavior depends on your device configuration. If the app's code or dependencies change, review and update this policy before distributing that version.</p>
+
+    <h2>1. Information the app handles</h2>
+    <p>Based on the project implementation reviewed for this policy, the app does not ask you to provide an account, name, contact details, or other profile information. It has no Internet permission, app-initiated network requests, analytics integration, advertising integration, crash-reporting SDK, or remote API integration. The inspected app code does not transmit personal or accessibility data to a developer-controlled server or a third party.</p>
+    <p>The Accessibility Service receives Android window-state events. The app reads event package and class names locally to identify likely system notification or control panels and adjust overlay visibility. It does not retrieve accessibility nodes, window content, or on-screen text. Gesture actions are passed to Android through its global-action API. General operational failures may be written to Android's local log; the app does not log screen text or accessibility content.</p>
+
+    <h2>2. Accessibility Service</h2>
+    <p>You enable or disable this service yourself in Android Accessibility settings. It is used to request Back, Home, and Recent Apps actions when you tap, double-tap, or long-press the ball. It also observes window-state metadata (package and class names) to detect certain system panels. Its configuration sets window-content retrieval off, and the implementation does not inspect on-screen text or accessibility nodes. Android or a device manufacturer may reject or vary a global action, especially Recent Apps.</p>
+
+    <h2>3. Display over other apps</h2>
+    <p>The Android "Display over other apps" permission allows the Quick Ball overlay to appear above ordinary apps. The app does not use this permission to read other apps' content. You can revoke it in Android Settings.</p>
+
+        <h2>4. Information stored on your device</h2>
+    <p>The app stores a small set of preferences in app-private SharedPreferences: whether Quick Ball is enabled, its selected screen edge and normalized position, and onboarding progress. These values support restoring the ball and the setup experience. They are stored on the device rather than sent by the app to a server.</p>
+    <p>The Android manifest allows app backup and the project has no rules excluding these preferences. Depending on your Android backup and device-transfer settings, Android may include app data in a system-managed backup or transfer. That is handled by Android and your configured backup provider, not by an app-operated server. You can clear the app's storage in Android Settings or uninstall the app to remove its local data; a system backup may restore backed-up data later.</p>
+
+    <h2>5. Internet access and third parties</h2>
+    <p>The installed Android app does not declare the Internet permission, and the reviewed source contains no network client or remote service integration. Its AndroidX and Material dependencies provide interface and platform support; the inspected dependency declarations do not include advertising, analytics, or crash-reporting SDKs. Google Play Services or other system components may independently process information under their own policies if present on your device; this app does not integrate them to send its data.</p>
+
+    <h2>6. Advertisements</h2>
+    <p>The reviewed project contains no ad placements or advertising SDK, and the app does not display advertisements.</p>
+
+    <h2>7. Sharing</h2>
+    <p>The app does not sell or share app-collected personal information with the developer or third parties because the reviewed implementation does not transmit such information. Android system backup or device-transfer behavior is described above.</p>
+
+    <h2>8. Retention and deletion</h2>
+    <p>Preferences remain in app-private storage while the app is installed, unless cleared or removed by Android. Clear the app's storage or uninstall it to remove those local preferences. Android may retain a backup according to the system settings you use; the developer does not operate a remote data store for this app and cannot delete an Android-managed backup on your behalf.</p>
+
+    <h2>9. Children's privacy</h2>
+    <p>Vi's Quick Ball is a general-purpose Android utility and is not designed to collect personal information from children. The app does not provide an account or data submission feature. A parent or guardian can manage the app and its permissions through Android settings.</p>
+
+    <h2>10. Security</h2>
+    <p>Preferences are kept in the app's private storage and the app does not send them over a network. No method of storage or device backup can be guaranteed completely secure. Keep your device and its backup settings protected.</p>
+
+    <h2>11. Changes to this policy</h2>
+    <p>This policy may be updated when the app or its data handling changes. The current version will be available at the public Privacy Policy page once its hosting URL is configured. The effective date above identifies this version.</p>
+
+    <h2>12. Contact</h2>
+    <p>Developer display name: Aham Viraj. Name: Viraj.</p>
+    <p>Email: <a href="mailto:ahamviraj@gmail.com">ahamviraj@gmail.com</a>. GitHub: <a href="https://github.com/ahamviraj" target="_blank" rel="noopener noreferrer">github.com/ahamviraj</a>. Instagram: <a href="https://www.instagram.com/ahamveeraj/" target="_blank" rel="noopener noreferrer">@ahamveeraj</a>. Project repository: <a href="https://github.com/ahamviraj/visquickball" target="_blank" rel="noopener noreferrer">github.com/ahamviraj/visquickball</a>.</p>
+
+    <div class="policy-callout">
+      <strong>Publication detail to complete:</strong> the final hosted Privacy Policy URL is not yet configured in the Android app. No app-store listing or public download destination is currently configured.
+    </div>
+
+    <h2>13. Scope and confirmation</h2>
+    <p>This policy reflects the source code, Android manifest, and declared app dependencies inspected on the effective date. Android's system backup provider behavior depends on your device configuration. If the app's code or dependencies change, review and update this policy before distributing that version.</p>
+
     <p><a href="index.html">Return to Vi's Quick Ball</a></p>
   </main>
-  <footer class="site-footer"><div class="wrap footer-row"><a class="brand footer-brand" href="index.html"><img src="assets/app-icon.webp" alt=""><span>Vi's Quick Ball</span></a><div class="footer-links"><a href="privacy-policy.html">Privacy Policy</a><a href="index.html#contact">Contact</a></div><p class="copyright">Effective 31 October 2026</p></div></footer>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand" href="index.html"><img src="assets/app-icon.webp" alt="" width="28" height="28"><span>Vi's Quick Ball</span></a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">Effective 31 October 2026</p>
+    </div>
+  </footer>
 </body>
 </html>
