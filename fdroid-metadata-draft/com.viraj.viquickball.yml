@@ -1,5 +1,5 @@
-# DRAFT ONLY: replace the TODO commit with the full hash of the finalized release tag.
-# Do not submit until the release tag, public APK, version history, and F-Droid build are verified.
+# DRAFT ONLY: pinned to the pushed v1.0.1 source commit. This is not submitted.
+# Do not submit until release tagging and the F-Droid build/signature workflow are verified.
 Categories:
   - System
 License: GPL-3.0-only
@@ -8,16 +8,6 @@ AuthorEmail: ahamviraj@gmail.com
 AuthorWebSite: https://ahamviraj.github.io/visquickball/
 WebSite: https://ahamviraj.github.io/visquickball/
 SourceCode: https://github.com/ahamviraj/visquickball
-Summary: Floating touch ball for Android navigation gestures
-Description: |-
-  Vi's Quick Ball is an assistive Android navigation utility with a floating
-  ball. A tap requests Back, a double-tap requests Home, a long press requests
-  Recent Apps, and dragging moves the ball to a screen edge.
-  .
-  The app provides an optional home-screen widget and Android Quick Settings
-  tile. The user manually grants display-over-other-apps access and enables the
-  Accessibility Service in Android Settings. Recent Apps and background
-  behavior can vary by Android version and device manufacturer.
 CurrentVersion: 1.0.1
 CurrentVersionCode: 2
 RepoType: git
@@ -25,6 +15,6 @@ Repo: https://github.com/ahamviraj/visquickball.git
 Builds:
   - versionName: 1.0.1
     versionCode: 2
-    commit: TODO_RELEASE_TAG_FULL_COMMIT
+    commit: 2d386bff7e8f170e4463243c4e7726e87936bd06
     gradle:
       - yes

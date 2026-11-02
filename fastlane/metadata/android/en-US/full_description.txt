@@ -1,0 +1,18 @@
+Vi's Quick Ball adds a small floating control for Android navigation.
+
+GESTURES
+• Tap requests Back.
+• Double-tap requests Home.
+• Long press requests Recent Apps, where supported by the device.
+• Drag the ball to move it; it docks to the nearest screen edge.
+
+Quick Ball also offers an optional Android Quick Settings tile and a
+home-screen widget.
+
+SETUP
+Grant Display over other apps access and enable the Quick Ball Accessibility
+Service manually in Android Settings. The service performs navigation actions
+in response to gestures and observes window-state metadata to hide the ball
+over some system panels. It does not retrieve accessibility nodes or window
+text. Android versions and device manufacturers may limit Recent Apps or
+background behavior.

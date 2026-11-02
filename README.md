@@ -27,7 +27,7 @@ Vi's Quick Ball is a native Android assistive navigation utility. Its floating c
 
 🔒 **Privacy Policy:** https://ahamviraj.github.io/visquickball/privacy-policy.html
 
-**Prepared next release:** 1.0.1 (version code 2; not published)
+**Current release:** [1.0.1 (version code 2)](https://github.com/ahamviraj/visquickball/releases/tag/v1.0.1)
 
 **Package ID:** `com.viraj.viquickball`
 
@@ -44,7 +44,7 @@ Vi's Quick Ball is a native Android assistive navigation utility. Its floating c
 
 ## Version
 
-The repository contains a local `v1.0.0` tag, while the source at that tag and a local signed APK report `versionName = "1.0"` and `versionCode = 1`. The next prepared release is **1.0.1** with **version code 2** so it can advance installed code-1 packages. I could not verify whether the tag or APK was publicly distributed; no new release or tag has been created, and no public download is claimed.
+The public `v1.0.1` release is tagged at commit `2d386bff7e8f170e4463243c4e7726e87936bd06`, with `versionName = "1.0.1"` and `versionCode = 2`. It advances the public `v1.0.0` release, whose APK declares version name `1.0` and code `1`.
 
 ## Features
 
@@ -119,11 +119,11 @@ Then open `http://localhost:8000`. Website details and hosting instructions are 
 
 The website is static HTML/CSS/JavaScript and needs no backend. GitHub Pages is prepared through `.github/workflows/pages.yml`; configure **Settings → Pages → Source → GitHub Actions** after publishing the repository. Vercel can serve the site with `website/` as its project root, no build command, and `.` as output directory. See [website/README.md](website/README.md) for steps.
 
-The website is prepared for Vercel at `website/` as its project root. No website has been deployed, and no public app download or store listing is configured yet.
+The website is prepared for Vercel at `website/` as its project root. The app APK is publicly available from the GitHub release linked above; no app-store listing is claimed here.
 
 ## F-Droid preparation
 
-The F-Droid metadata is a **draft** in [`fdroid-metadata-draft/`](fdroid-metadata-draft/README.md); it is not a submission. Before submitting, publish the reviewed source commit with a matching immutable version tag, confirm the release version/code and update history, and have F-Droid maintainers validate the recipe. The Gradle default build does not require or use the private signing key. To preserve updates from developer-signed installs, F-Droid must verify a source build and publish with the upstream signing identity; that has not yet been established. An APK signed only with F-Droid's independent key is not a seamless update for developer-signed installations. See the draft notes for requirements and current signature-tool limitations.
+The F-Droid metadata is a **draft** in [`fdroid-metadata-draft/`](fdroid-metadata-draft/README.md); it is not a submission. The v1.0.1 source commit is public and has a matching immutable tag. F-Droid lint/build and upstream-signature verification are still required. The Gradle default build does not require or use the private signing key. To preserve updates from developer-signed installs, F-Droid must verify the source build and publish with the upstream signing identity; that has not yet been established. An APK signed only with F-Droid's independent key is not a seamless update for developer-signed installations. See the draft notes for requirements and current signature-tool limitations.
 
 ## Configure the canonical policy URL
 
