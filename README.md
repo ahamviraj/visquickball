@@ -31,6 +31,20 @@ Vi's Quick Ball is a native Android assistive navigation utility. Its floating c
 
 **Package ID:** `com.viraj.viquickball`
 
+## Download Vi's Quick Ball
+
+Vi's Quick Ball is officially available on PhonePe Appstore. You can also download the APK from the GitHub release.
+
+[![Get it on PhonePe Appstore](https://docstore.indusappstore.com/public/external/developerdashboard-static/default_english.png)](https://indusapp.store/tbrjm2se)
+[![Get it on GitHub](https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png)](https://github.com/ahamviraj/visquickball/releases)
+
+<p align="center">
+  <img src="website/assets/phonepe-appstore-qr.png" alt="PhonePe Appstore QR code for Vi's Quick Ball" width="180">
+</p>
+
+Scan the QR code to download Vi's Quick Ball from PhonePe Appstore.
+View the [full PhonePe Appstore listing](https://www.phonepeappstore.com/apps/tools/vi's-quick-ball/com.viraj.viquickball/?page=details&id=com.viraj.viquickball).
+
 ## Developer
 
 - Developer: **Viraj**
@@ -119,7 +133,7 @@ Then open `http://localhost:8000`. Website details and hosting instructions are 
 
 The website is static HTML/CSS/JavaScript and needs no backend. GitHub Pages is prepared through `.github/workflows/pages.yml`; configure **Settings → Pages → Source → GitHub Actions** after publishing the repository. Vercel can serve the site with `website/` as its project root, no build command, and `.` as output directory. See [website/README.md](website/README.md) for steps.
 
-The website is prepared for Vercel at `website/` as its project root. The app APK is publicly available from the GitHub release linked above; no app-store listing is claimed here.
+The website is prepared for Vercel at `website/` as its project root. The current APK is available from the GitHub release and PhonePe Appstore links above.
 
 ## F-Droid preparation
 
@@ -132,7 +146,7 @@ After you publish and verify the policy page, set the real HTTPS URL in `app/src
 ## Privacy and publication
 
 - The developer contact and repository links are now configured with the supplied details.
-- Add a verified app listing/download URL only after publication.
+- The app is published on PhonePe Appstore and in the GitHub v1.0.1 release.
 - After hosting, copy the final canonical HTTPS Privacy Policy URL into the Android app configuration and the Indus Appstore dashboard.
 - Recheck the policy if dependencies, network access, or data handling change.
 

@@ -58,7 +58,7 @@ Developer display name: Aham Viraj. Name: Viraj.
 
 Email: [ahamviraj@gmail.com](mailto:ahamviraj@gmail.com). GitHub: [github.com/ahamviraj](https://github.com/ahamviraj). Instagram: [@ahamveeraj](https://www.instagram.com/ahamveeraj/). Project repository: [github.com/ahamviraj/visquickball](https://github.com/ahamviraj/visquickball).
 
-**Publication detail to complete:** the final hosted Privacy Policy URL is not yet configured in the Android app. No app-store listing or public download destination is currently configured.
+**Publication detail to complete:** the final hosted Privacy Policy URL is not yet configured in the Android app. Vi's Quick Ball is available on PhonePe Appstore and through the project's GitHub release.
 
 ## 13. Scope and confirmation
 

@@ -17,14 +17,14 @@ The site was fully redesigned from a light pink theme into a dark, cinematic pro
 ## Verified project details
 
 - App: Vi's Quick Ball - An Assistive Floating Touch Ball
-- Website release label: `1.0.0`
+- Current app release: `1.0.1` (version code `2`)
 - Developer display name: Aham Viraj; name: Viraj
 - Email: [ahamviraj@gmail.com](mailto:ahamviraj@gmail.com)
 - GitHub: [ahamviraj](https://github.com/ahamviraj)
 - Instagram: [@ahamveeraj](https://www.instagram.com/ahamveeraj/)
 - Repository: [ahamviraj/visquickball](https://github.com/ahamviraj/visquickball)
 
-The Android Gradle configuration currently says `versionName = "1.0"` (`versionCode = 1`). The website's `v1.0.0` label does not mean a public APK download is available.
+Vi's Quick Ball is officially available from the PhonePe Appstore. The current APK release is also available from the project's GitHub Releases page.
 
 ## Feature → screenshot mapping used in the hero
 
@@ -48,10 +48,10 @@ From the repository root:
 
 Then open http://localhost:8000.
 
-## Download link
+## Download links
 
-`downloadUrl` in `site-config.js` remains empty. The primary download CTA is hidden until a verified public HTTPS listing exists. Add it there only after publication; do not use a preview or placeholder URL.
+The page links to the official PhonePe Appstore listing, includes its store badge and QR code, and keeps a direct link to the v1.0.1 GitHub release. The GitHub badge links to the project's Releases page; the separate repository link opens the source repository. Update `downloadUrl` in `site-config.js` when the current GitHub release changes.
 
 ## Deploy
 
-Same as before — Vercel root = `website/`, or GitHub Pages workflow in `.github/workflows/pages.yml`. No new files or build steps were added.
+Vercel root = `website/`, or use the GitHub Pages workflow in `.github/workflows/pages.yml`. The website remains static and has no new build steps.
